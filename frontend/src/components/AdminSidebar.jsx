@@ -1,24 +1,32 @@
+'use client'
 import { useState } from 'react'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 import { LayoutDashboard, FolderOpen, PlusSquare, LogOut, ExternalLink, Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuth } from '../context/AuthContext'
 import toast from 'react-hot-toast'
 
 const navItems = [
-  { to: '/admin', icon: LayoutDashboard, label: 'Dashboard', end: true },
+  { to: '/admin', icon: LayoutDashboard, label: 'Dashboard', exact: true },
   { to: '/admin/projects', icon: FolderOpen, label: 'Projets' },
   { to: '/admin/projects/new', icon: PlusSquare, label: 'Nouveau projet' },
 ]
 
 function SidebarContent({ onClose }) {
   const { user, logout } = useAuth()
-  const navigate = useNavigate()
+  const router = useRouter()
+  const pathname = usePathname()
 
   const handleLogout = () => {
     logout()
     toast.success('Déconnecté')
-    navigate('/admin/login')
+    router.push('/admin/login')
+  }
+
+  const isActive = (to, exact) => {
+    if (exact) return pathname === to
+    return pathname.startsWith(to)
   }
 
   return (
@@ -43,30 +51,30 @@ function SidebarContent({ onClose }) {
 
       {/* Nav */}
       <nav className="flex-1 p-4 space-y-1">
-        {navItems.map(({ to, icon: Icon, label, end }) => (
-          <NavLink
-            key={to}
-            to={to}
-            end={end}
-            onClick={onClose}
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-3 text-sm transition-all duration-200 ${
-                isActive
+        {navItems.map(({ to, icon: Icon, label, exact }) => {
+          const active = isActive(to, exact)
+          return (
+            <Link
+              key={to}
+              href={to}
+              onClick={onClose}
+              className={`flex items-center gap-3 px-4 py-3 text-sm transition-all duration-200 ${
+                active
                   ? 'bg-gold-500 text-white'
                   : 'text-dark-300 hover:bg-dark-700 hover:text-white'
-              }`
-            }
-          >
-            <Icon size={18} />
-            {label}
-          </NavLink>
-        ))}
+              }`}
+            >
+              <Icon size={18} />
+              {label}
+            </Link>
+          )
+        })}
       </nav>
 
       {/* Bottom */}
       <div className="p-4 border-t border-dark-700 space-y-1">
         <Link
-          to="/"
+          href="/"
           target="_blank"
           onClick={onClose}
           className="flex items-center gap-3 px-4 py-2.5 text-dark-400 hover:text-white text-sm transition-colors"

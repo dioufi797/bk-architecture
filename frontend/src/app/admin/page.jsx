@@ -1,5 +1,6 @@
+'use client'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { FolderOpen, PlusSquare, TrendingUp, Star } from 'lucide-react'
 import AdminSidebar from '../../components/AdminSidebar'
@@ -77,7 +78,7 @@ export default function AdminDashboard() {
                 <div className="lg:col-span-2 bg-dark-800 border border-dark-700 p-4 sm:p-6">
                   <div className="flex items-center justify-between mb-4 sm:mb-6">
                     <h2 className="text-white font-semibold text-sm sm:text-base">Projets récents</h2>
-                    <Link to="/admin/projects" className="text-gold-500 text-xs uppercase tracking-wider hover:text-gold-400">
+                    <Link href="/admin/projects" className="text-gold-500 text-xs uppercase tracking-wider hover:text-gold-400">
                       Voir tout
                     </Link>
                   </div>
@@ -102,7 +103,7 @@ export default function AdminDashboard() {
                           {project.status === 'completed' ? 'Livré' : project.status === 'ongoing' ? 'En cours' : 'Concept'}
                         </span>
                         <Link
-                          to={`/admin/projects/edit/${project._id}`}
+                          href={`/admin/projects/${project._id}`}
                           className="text-dark-500 hover:text-gold-500 text-xs transition-colors shrink-0 hidden sm:block"
                         >
                           Éditer
@@ -134,7 +135,7 @@ export default function AdminDashboard() {
 
                   <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-dark-700">
                     <Link
-                      to="/admin/projects/new"
+                      href="/admin/projects/new"
                       className="flex items-center gap-2 w-full justify-center px-4 py-3 bg-gold-500 text-white text-xs sm:text-sm uppercase tracking-wider hover:bg-gold-600 transition-colors"
                     >
                       <PlusSquare size={15} />

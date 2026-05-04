@@ -1,20 +1,21 @@
+'use client'
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Eye, EyeOff, Lock } from 'lucide-react'
 import toast from 'react-hot-toast'
-import { useAuth } from '../../context/AuthContext'
+import { useAuth } from '../../../context/AuthContext'
 
 export default function AdminLogin() {
   const [form, setForm] = useState({ email: '', password: '' })
   const [showPass, setShowPass] = useState(false)
   const [loading, setLoading] = useState(false)
   const { login, isAuthenticated } = useAuth()
-  const navigate = useNavigate()
+  const router = useRouter()
 
   useEffect(() => {
-    if (isAuthenticated) navigate('/admin', { replace: true })
-  }, [isAuthenticated, navigate])
+    if (isAuthenticated) router.replace('/admin')
+  }, [isAuthenticated, router])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -22,7 +23,7 @@ export default function AdminLogin() {
     try {
       await login(form.email, form.password)
       toast.success('Connexion réussie')
-      navigate('/admin')
+      router.push('/admin')
     } catch (err) {
       toast.error(err.response?.data?.message || 'Identifiants incorrects')
     } finally {

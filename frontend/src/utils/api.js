@@ -1,17 +1,17 @@
 import axios from 'axios'
 
-const baseURL = import.meta.env.VITE_API_URL
-  ? `${import.meta.env.VITE_API_URL}/api`
+const baseURL = process.env.NEXT_PUBLIC_API_URL
+  ? `${process.env.NEXT_PUBLIC_API_URL}/api`
   : '/api'
 
-const api = axios.create({
-  baseURL,
-  timeout: 30000,
-})
+const api = axios.create({ baseURL, timeout: 30000 })
 
-const token = localStorage.getItem('bk_token')
-if (token) {
-  api.defaults.headers.common['Authorization'] = `Bearer ${token}`
-}
+api.interceptors.request.use(config => {
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('bk_token')
+    if (token) config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
+})
 
 export default api

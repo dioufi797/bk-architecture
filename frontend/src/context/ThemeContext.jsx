@@ -1,24 +1,23 @@
+'use client'
 import { createContext, useContext, useState, useEffect } from 'react'
 
 const ThemeContext = createContext(null)
 
 export function ThemeProvider({ children }) {
-  const [isDark, setIsDark] = useState(() => {
-    const stored = localStorage.getItem('bk_theme')
-    if (stored) return stored === 'dark'
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-  })
+  const [isDark, setIsDark] = useState(false)
 
   useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
+    const stored = localStorage.getItem('bk_theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    setIsDark(stored ? stored === 'dark' : prefersDark)
+  }, [])
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDark)
     localStorage.setItem('bk_theme', isDark ? 'dark' : 'light')
   }, [isDark])
 
-  const toggleTheme = () => setIsDark(prev => !prev)
+  const toggleTheme = () => setIsDark(p => !p)
 
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme }}>

@@ -28,3 +28,5 @@ npm-debug.log*
 # Editor
 .vscode/
 .idea/
+frontend/.next/
+frontend/node_modules/

@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+'use client'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { MapPin, ArrowUpRight } from 'lucide-react'
 
@@ -21,7 +22,7 @@ export default function ProjectCard({ project, index = 0 }) {
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      <Link to={`/projects/${project._id}`} className="group block">
+      <Link href={`/projects/${project._id}`} className="group block">
         {/* Image */}
         <div className="relative overflow-hidden aspect-[4/3] bg-dark-200">
           <img

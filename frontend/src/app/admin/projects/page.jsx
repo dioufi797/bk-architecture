@@ -1,10 +1,11 @@
+'use client'
 import { useState, useEffect, useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Plus, Edit2, Trash2, Search, Star, FolderOpen } from 'lucide-react'
 import toast from 'react-hot-toast'
-import AdminSidebar from '../../components/AdminSidebar'
-import api from '../../utils/api'
+import AdminSidebar from '../../../components/AdminSidebar'
+import api from '../../../utils/api'
 
 const categoryLabels = {
   residential: 'Résidentiel', commercial: 'Commercial',
@@ -67,7 +68,7 @@ export default function AdminProjects() {
               <p className="text-dark-400 text-xs sm:text-sm mt-0.5">{projects.length} projet{projects.length > 1 ? 's' : ''}</p>
             </div>
             <Link
-              to="/admin/projects/new"
+              href="/admin/projects/new"
               className="flex items-center gap-2 px-4 py-2.5 bg-gold-500 text-white text-xs uppercase tracking-wider hover:bg-gold-600 transition-colors whitespace-nowrap min-h-[44px]"
             >
               <Plus size={15} />
@@ -171,7 +172,7 @@ export default function AdminProjects() {
                           <td className="px-4 sm:px-6 py-4">
                             <div className="flex items-center justify-end gap-1">
                               <Link
-                                to={`/admin/projects/edit/${project._id}`}
+                                href={`/admin/projects/${project._id}`}
                                 className="p-2 min-w-[36px] min-h-[36px] flex items-center justify-center text-dark-400 hover:text-gold-500 hover:bg-dark-600 transition-all"
                               >
                                 <Edit2 size={15} />
@@ -228,7 +229,7 @@ export default function AdminProjects() {
                       </div>
                       <div className="flex items-center gap-1 shrink-0">
                         <Link
-                          to={`/admin/projects/edit/${project._id}`}
+                          href={`/admin/projects/${project._id}`}
                           className="p-2.5 text-dark-400 hover:text-gold-500 transition-colors"
                         >
                           <Edit2 size={16} />

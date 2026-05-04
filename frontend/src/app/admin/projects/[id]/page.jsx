@@ -1,10 +1,11 @@
+'use client'
 import { useState, useEffect, useRef } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Upload, X, ArrowLeft, Save, Star } from 'lucide-react'
 import toast from 'react-hot-toast'
-import AdminSidebar from '../../components/AdminSidebar'
-import api from '../../utils/api'
+import AdminSidebar from '../../../../components/AdminSidebar'
+import api from '../../../../utils/api'
 
 const CATEGORIES = [
   { value: 'residential', label: 'Résidentiel' },
@@ -21,10 +22,9 @@ const STATUSES = [
   { value: 'concept', label: 'Concept' },
 ]
 
-export default function AdminProjectForm() {
+export default function AdminProjectEdit() {
   const { id } = useParams()
-  const navigate = useNavigate()
-  const isEdit = !!id
+  const router = useRouter()
   const fileInputRef = useRef(null)
 
   const [form, setForm] = useState({
@@ -36,10 +36,9 @@ export default function AdminProjectForm() {
   const [newFiles, setNewFiles] = useState([])
   const [previews, setPreviews] = useState([])
   const [loading, setLoading] = useState(false)
-  const [fetchLoading, setFetchLoading] = useState(isEdit)
+  const [fetchLoading, setFetchLoading] = useState(true)
 
   useEffect(() => {
-    if (!isEdit) return
     api.get(`/projects/${id}`)
       .then(res => {
         const p = res.data.data
@@ -59,10 +58,10 @@ export default function AdminProjectForm() {
       })
       .catch(() => {
         toast.error('Projet introuvable')
-        navigate('/admin/projects')
+        router.push('/admin/projects')
       })
       .finally(() => setFetchLoading(false))
-  }, [id, isEdit, navigate])
+  }, [id, router])
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
@@ -93,15 +92,11 @@ export default function AdminProjectForm() {
     try {
       const data = new FormData()
       Object.entries(form).forEach(([k, v]) => data.append(k, v))
-      if (isEdit) data.append('existingImages', JSON.stringify(existingImages))
+      data.append('existingImages', JSON.stringify(existingImages))
       newFiles.forEach(f => data.append('images', f))
-
-      isEdit
-        ? await api.put(`/projects/${id}`, data, { headers: { 'Content-Type': 'multipart/form-data' } })
-        : await api.post('/projects', data, { headers: { 'Content-Type': 'multipart/form-data' } })
-
-      toast.success(isEdit ? 'Projet mis à jour !' : 'Projet créé !')
-      navigate('/admin/projects')
+      await api.put(`/projects/${id}`, data, { headers: { 'Content-Type': 'multipart/form-data' } })
+      toast.success('Projet mis à jour !')
+      router.push('/admin/projects')
     } catch (err) {
       toast.error(err.response?.data?.message || 'Une erreur est survenue')
     } finally {
@@ -129,23 +124,18 @@ export default function AdminProjectForm() {
           {/* Header */}
           <div className="flex items-center gap-3 mb-6">
             <button
-              onClick={() => navigate('/admin/projects')}
+              onClick={() => router.push('/admin/projects')}
               className="text-dark-400 hover:text-white transition-colors p-1 min-w-[44px] min-h-[44px] flex items-center justify-center"
             >
               <ArrowLeft size={20} />
             </button>
             <div>
-              <h1 className="font-display text-xl sm:text-2xl font-bold text-white">
-                {isEdit ? 'Modifier le projet' : 'Nouveau projet'}
-              </h1>
-              <p className="text-dark-400 text-xs sm:text-sm mt-0.5">
-                {isEdit ? 'Mettez à jour les informations' : 'Remplissez les informations'}
-              </p>
+              <h1 className="font-display text-xl sm:text-2xl font-bold text-white">Modifier le projet</h1>
+              <p className="text-dark-400 text-xs sm:text-sm mt-0.5">Mettez à jour les informations</p>
             </div>
           </div>
 
           <form onSubmit={handleSubmit}>
-            {/* On mobile: vertical stack. On lg: 2/3 + 1/3 */}
             <div className="flex flex-col lg:grid lg:grid-cols-3 gap-5 lg:gap-8">
 
               {/* Sidebar settings — shown first on mobile */}
@@ -210,13 +200,13 @@ export default function AdminProjectForm() {
                   {loading ? (
                     <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                   ) : (
-                    <><Save size={16} />{isEdit ? 'Mettre à jour' : 'Créer le projet'}</>
+                    <><Save size={16} />Mettre à jour</>
                   )}
                 </button>
 
                 <button
                   type="button"
-                  onClick={() => navigate('/admin/projects')}
+                  onClick={() => router.push('/admin/projects')}
                   className="w-full py-3 border border-dark-600 text-dark-400 hover:border-dark-400 hover:text-white text-sm uppercase tracking-wider transition-colors"
                 >
                   Annuler

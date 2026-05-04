@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+'use client'
+import Link from 'next/link'
 import { MapPin, Phone, Mail, Instagram, Linkedin, Facebook } from 'lucide-react'
 
 const footerLinks = {
@@ -65,7 +66,7 @@ export default function Footer() {
               {footerLinks.pages.map(({ to, label }) => (
                 <li key={to}>
                   <Link
-                    to={to}
+                    href={to}
                     className="text-dark-300 hover:text-gold-400 text-sm transition-colors flex items-center gap-2 group"
                   >
                     <span className="w-4 h-px bg-dark-600 group-hover:bg-gold-500 transition-colors shrink-0" />
@@ -83,7 +84,7 @@ export default function Footer() {
               {footerLinks.services.map((s) => (
                 <li key={s}>
                   <Link
-                    to="/services"
+                    href="/services"
                     className="text-dark-300 hover:text-gold-400 text-sm transition-colors flex items-center gap-2 group"
                   >
                     <span className="w-4 h-px bg-dark-600 group-hover:bg-gold-500 transition-colors shrink-0" />
