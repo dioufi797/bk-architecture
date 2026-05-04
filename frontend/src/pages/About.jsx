@@ -52,7 +52,7 @@ export default function About() {
       <section className="py-16 sm:py-20 lg:py-24 bg-white dark:bg-dark-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-16 items-center">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="flex flex-col items-center text-center lg:items-start lg:text-left">
               <p className="section-subtitle mb-3 sm:mb-4">Notre mission</p>
               <h2 className="section-title text-dark-900 dark:text-white mb-4 sm:mb-6">
                 Créer des espaces qui<br />inspirent et perdurent
@@ -126,9 +126,9 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15, duration: 0.5 }}
-                className="group"
+                className="group flex flex-col items-center text-center"
               >
-                <div className="relative overflow-hidden aspect-[3/4] mb-5">
+                <div className="relative overflow-hidden aspect-[3/4] mb-5 w-full">
                   <img src={img} alt={name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
                 </div>

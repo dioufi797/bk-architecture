@@ -63,7 +63,7 @@ export default function Contact() {
               transition={{ duration: 0.7 }}
               className="space-y-4 sm:space-y-5"
             >
-              <div>
+              <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
                 <p className="section-subtitle mb-3">Nos coordonnées</p>
                 <h2 className="font-display text-2xl sm:text-2xl font-semibold text-dark-900 dark:text-white mb-2">Prenons contact</h2>
                 <div className="gold-line mb-4" />

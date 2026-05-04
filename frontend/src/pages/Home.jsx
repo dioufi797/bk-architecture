@@ -142,7 +142,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="group p-6 sm:p-8 bg-white dark:bg-dark-700 hover:bg-dark-900 dark:hover:bg-dark-900 transition-all duration-500 border border-transparent hover:border-gold-500/30 flex flex-col items-center text-center sm:items-start sm:text-left"
+                className="group p-6 sm:p-8 bg-white dark:bg-dark-700 hover:bg-dark-900 dark:hover:bg-dark-900 transition-all duration-500 border border-transparent hover:border-gold-500/30 flex flex-col items-center text-center"
               >
                 <div className="w-11 h-11 sm:w-12 sm:h-12 bg-gold-500/10 flex items-center justify-center mb-5 sm:mb-6 group-hover:bg-gold-500 transition-colors duration-300">
                   <Icon size={20} className="text-gold-500 group-hover:text-white transition-colors duration-300" />
@@ -168,6 +168,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
+              className="flex flex-col items-center text-center lg:items-start lg:text-left"
             >
               <p className="section-subtitle mb-3 sm:mb-4">Notre histoire</p>
               <h2 className="section-title text-dark-900 dark:text-white mb-4 sm:mb-6">
