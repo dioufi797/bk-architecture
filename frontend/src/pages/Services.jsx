@@ -78,14 +78,14 @@ export default function Services() {
               className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center"
             >
               {/* Text — always first on mobile */}
-              <div className={i % 2 === 1 ? 'lg:order-2' : ''}>
-                <div className="w-11 h-11 sm:w-12 sm:h-12 bg-gold-500 flex items-center justify-center mb-5 mx-auto lg:mx-0">
+              <div className={`flex flex-col items-center text-center lg:items-start lg:text-left ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
+                <div className="w-11 h-11 sm:w-12 sm:h-12 bg-gold-500 flex items-center justify-center mb-5">
                   <Icon size={20} className="text-white" />
                 </div>
-                <h2 className="font-display text-2xl sm:text-3xl font-semibold text-dark-900 dark:text-white mb-3 sm:mb-4 text-center lg:text-left">{title}</h2>
-                <div className="gold-line mb-5 mx-auto lg:mx-0" />
-                <p className="text-dark-500 dark:text-dark-300 leading-relaxed mb-6 text-sm sm:text-base text-center lg:text-left">{desc}</p>
-                <ul className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8">
+                <h2 className="font-display text-2xl sm:text-3xl font-semibold text-dark-900 dark:text-white mb-3 sm:mb-4">{title}</h2>
+                <div className="gold-line mb-5" />
+                <p className="text-dark-500 dark:text-dark-300 leading-relaxed mb-6 text-sm sm:text-base">{desc}</p>
+                <ul className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8 w-full">
                   {features.map((f) => (
                     <li key={f} className="flex items-center gap-3 text-dark-600 dark:text-dark-300 text-sm justify-center lg:justify-start">
                       <CheckCircle size={15} className="text-gold-500 shrink-0" />
@@ -93,11 +93,9 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-                <div className="flex justify-center lg:justify-start">
-                  <Link to="/contact" className="btn-primary">
-                    Discuter de votre projet <ArrowRight size={16} />
-                  </Link>
-                </div>
+                <Link to="/contact" className="btn-primary">
+                  Discuter de votre projet <ArrowRight size={16} />
+                </Link>
               </div>
 
               {/* Image */}

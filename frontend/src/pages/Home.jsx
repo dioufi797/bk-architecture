@@ -142,15 +142,15 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="group p-6 sm:p-8 bg-white dark:bg-dark-700 hover:bg-dark-900 dark:hover:bg-dark-900 transition-all duration-500 border border-transparent hover:border-gold-500/30"
+                className="group p-6 sm:p-8 bg-white dark:bg-dark-700 hover:bg-dark-900 dark:hover:bg-dark-900 transition-all duration-500 border border-transparent hover:border-gold-500/30 flex flex-col items-center text-center sm:items-start sm:text-left"
               >
-                <div className="w-11 h-11 sm:w-12 sm:h-12 bg-gold-500/10 flex items-center justify-center mb-5 sm:mb-6 group-hover:bg-gold-500 transition-colors duration-300 mx-auto sm:mx-0">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 bg-gold-500/10 flex items-center justify-center mb-5 sm:mb-6 group-hover:bg-gold-500 transition-colors duration-300">
                   <Icon size={20} className="text-gold-500 group-hover:text-white transition-colors duration-300" />
                 </div>
-                <h3 className="font-display text-base sm:text-lg font-semibold text-dark-900 dark:text-white group-hover:text-white transition-colors duration-300 mb-2 sm:mb-3 text-center sm:text-left">
+                <h3 className="font-display text-base sm:text-lg font-semibold text-dark-900 dark:text-white group-hover:text-white transition-colors duration-300 mb-2 sm:mb-3">
                   {title}
                 </h3>
-                <p className="text-dark-500 dark:text-dark-300 group-hover:text-white/60 text-sm leading-relaxed transition-colors duration-300 text-center sm:text-left">
+                <p className="text-dark-500 dark:text-dark-300 group-hover:text-white/60 text-sm leading-relaxed transition-colors duration-300">
                   {desc}
                 </p>
               </motion.div>
