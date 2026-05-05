@@ -15,22 +15,22 @@ const values = [
 
 const team = [
   {
-    name: 'Brahim Karimi',
+    name: 'Baidy Kane',
     role: 'Architecte Principal & Fondateur',
-    img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400',
-    desc: 'Diplômé de l\'École Nationale d\'Architecture, Brahim a fondé BK-Architecture avec la vision de créer des espaces d\'exception.',
+    img: '/team/baidy-kane.jpg',
+    desc: 'Architecte fondateur de BK-Architecture, Baidy Kane a bâti son cabinet avec la vision de créer des espaces d\'exception au Sénégal et en Afrique.',
   },
   {
-    name: 'Karim Benali',
+    name: 'Abdourahmanne Diouf',
     role: 'Directeur Artistique',
-    img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
-    desc: 'Passionné de design et d\'art contemporain, Karim donne une dimension artistique unique à chaque projet.',
+    img: '/team/abdourahmanne-diouf.jpg',
+    desc: 'Passionné de design et d\'art contemporain, Abdourahmanne donne une dimension artistique unique à chaque projet.',
   },
   {
-    name: 'Sara Mansouri',
+    name: 'Alioune Kane',
     role: 'Architecte d\'Intérieur',
-    img: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400',
-    desc: 'Spécialiste en design d\'intérieur, Sara crée des espaces intérieurs raffinés et fonctionnels.',
+    img: '/team/alioune-kane.jpg',
+    desc: 'Spécialiste en design d\'intérieur, Alioune crée des espaces intérieurs raffinés et fonctionnels.',
   },
 ]
 
@@ -64,7 +64,7 @@ export default function About() {
                 </h2>
                 <div className="gold-line mb-5 sm:mb-6" />
                 <p className="text-dark-500 dark:text-dark-300 leading-relaxed mb-4 text-sm sm:text-base">
-                  Depuis plus de 15 ans, BK-Architecture façonne le paysage architectural marocain en créant des œuvres qui allient esthétique, fonctionnalité et durabilité. Notre cabinet est né d'une conviction profonde : l'architecture a le pouvoir de transformer les vies.
+                  Depuis plus de 15 ans, BK-Architecture façonne le paysage architectural sénégalais depuis Dakar, en créant des œuvres qui allient esthétique, fonctionnalité et durabilité. Notre cabinet est né d'une conviction profonde : l'architecture a le pouvoir de transformer les vies.
                 </p>
                 <p className="text-dark-500 dark:text-dark-300 leading-relaxed mb-6 sm:mb-8 text-sm sm:text-base">
                   De la première esquisse à la livraison finale, nous accompagnons nos clients dans chaque étape du processus créatif. Notre approche collaborative garantit que chaque projet reflète fidèlement la vision et les aspirations de ceux qui y vivront ou y travailleront.
