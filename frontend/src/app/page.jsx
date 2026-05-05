@@ -20,7 +20,7 @@ const stats = [
   { value: '15+', label: 'Années' },
   { value: '200+', label: 'Projets' },
   { value: '98%', label: 'Satisfaction' },
-  { value: '25+', label: 'Prix' },
+  { value: '100+', label: 'Clients' },
 ]
 
 export default function Home() {
